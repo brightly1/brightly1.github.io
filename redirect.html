@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Redirecting to Kindle App</title>
+</head>
+<body>
+	<script>
+		// Get the 'kindleLink' parameter from the URL
+		var urlParams = new URLSearchParams(window.location.search);
+		var kindleLink = urlParams.get('kindleLink');
+
+		// If 'kindleLink' is empty or null, redirect to a default URL
+		if (!kindleLink) {
+			kindleLink = "kindle://...";
+		}
+
+		// Redirect to the 'kindleLink' URL
+		window.location.replace(kindleLink);
+	</script>
+</body>
+</html>
