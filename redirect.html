@@ -16,6 +16,7 @@
         if (!results) return null;
         if (!results[2]) return '';
         return decodeURIComponent(results[2].replace(/\+/g, " "));
+        setTimeout(function () { window.close(); }, 2000); // Close the tab after 2 seconds
       }
       
       var asin = getParameterByName('asin');
@@ -23,7 +24,6 @@
       
       var kindleURL = "kindle://book?action=open&asin=" + asin + "&location=" + location;
       window.location = kindleURL;
-      setTimeout(function () { window.close(); }, 2000); // Close the tab after 2 seconds
     </script>
   </body>
 </html>
