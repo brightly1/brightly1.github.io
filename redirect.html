@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Redirecting to Kindle App</title>
+  <meta charset="utf-8">
+  <title>My Book</title>
+  <script>
+    function openKindle() {
+      var kindleLink = getParameterByName('kindleLink');
+      if (kindleLink) {
+        window.location.href = kindleLink;
+      }
+    }
+
+    function getParameterByName(name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, '\\$&');
+      var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+          results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    // Call the function to open Kindle
+    openKindle();
+  </script>
 </head>
-<body>
-	<script>
-		// Get the 'kindleLink' parameter from the URL
-		var urlParams = new URLSearchParams(window.location.search);
-		var kindleLink = urlParams.get('kindleLink');
-
-		// If 'kindleLink' is empty or null, redirect to a default URL
-		if (!kindleLink) {
-			kindleLink = "kindle://...";
-		}
-
-		// Redirect to the 'kindleLink' URL
-		window.location.replace(kindleLink);
-	</script>
-</body>
 </html>
