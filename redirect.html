@@ -1,23 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>Redirect to Kindle</title>
-</head>
-<body>
-	<script>
-		// Get the parameter value from the URL
-		const urlParams = new URLSearchParams(window.location.search);
-		const kindleLink = urlParams.get('kindleLink');
+<script>
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+  
+  var kindleLink = getParameterByName('kindleLink');
+  var asin = getParameterByName('asin');
+  var location = encodeURIComponent(getParameterByName('location'));
 
-		// Decode the kindleLink parameter
-		const decodedLink = decodeURIComponent(kindleLink);
+  var url = 'kindle://book?action=open&asin=' + asin + '&location=' + location;
+  
+  setTimeout(function() {
+    window.location = url;
+  }, 5000);
 
-		// Encode the decoded link to ensure it is properly passed to the Kindle app
-		const encodedLink = encodeURIComponent(decodedLink);
-
-		// Redirect to the Kindle app with the encoded link
-		window.location.href = `kindle://book?action=open&asin=B00EXAMPLE&location=${encodedLink}`;
-	</script>
-</body>
-</html>
+  window.location = kindleLink;
+</script>
