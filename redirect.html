@@ -1,23 +1,28 @@
-<script>
-  function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-  }
-  
-  var kindleLink = getParameterByName('kindleLink');
-  var asin = getParameterByName('asin');
-  var location = encodeURIComponent(getParameterByName('location'));
-
-  var url = 'kindle://book?action=open&asin=' + asin + '&location=' + location;
-  
-  setTimeout(function() {
-    window.location = url;
-  }, 5000);
-
-  window.location = kindleLink;
-</script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Open Kindle Book</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <script>
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+      }
+      
+      var asin = getParameterByName('asin');
+      var location = getParameterByName('location');
+      
+      var kindleURL = "kindle://book?action=open&asin=" + asin + "&location=" + location;
+      window.location = kindleURL;
+    </script>
+  </body>
+</html>
