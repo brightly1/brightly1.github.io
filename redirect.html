@@ -23,6 +23,7 @@
       
       var kindleURL = "kindle://book?action=open&asin=" + asin + "&location=" + location;
       window.location = kindleURL;
+      setTimeout(function () { window.close(); }, 2000); // Close the tab after 2 seconds
     </script>
   </body>
 </html>
